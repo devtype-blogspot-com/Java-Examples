@@ -1,3 +1,9 @@
+/*
+http://e-maxx.ru/algo/generating_combinations
+http://rsdn.ru/article/alg/Combine.xml
+http://study-and-dev.com/blog/sda_theory_combinatoric/
+ */
+
 import java.util.Scanner;
 
 public class Main {
