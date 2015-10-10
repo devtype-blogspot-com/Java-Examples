@@ -1,3 +1,9 @@
+.DS_Store
+._*
+**/xcuserdata
+**/*.xcworkspace
+
+
 *.class
 
 # Mobile Tools for Java (J2ME)
