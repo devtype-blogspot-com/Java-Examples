@@ -1,12 +1,32 @@
-/*
-https://stepic.org/lesson/Объявление-класса-12766/step/12?course=Java-Базовый-курс&unit=3114
- */
-
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello World!");
     }
 
+    /**
+     * https://stepic.org/lesson/Обработка-исключений-Try-catch-12773/step/7?course=Java-Базовый-курс&unit=3121
+     * @param robotConnectionManager
+     * @param toX
+     * @param toY
+     */
+    public static void moveRobot(RobotConnectionManager robotConnectionManager, int toX, int toY) {
+        final int l = 3;
+        for (int i = 1; i <= l; i++) {
+            try (RobotConnection rb = robotConnectionManager.getConnection()) {
+                rb.moveRobotTo(toX, toY);
+                i = l + 1;
+            } catch (RobotConnectionException rce) {
+                if (i == l) throw rce;
+            }
+        }
+    }
+
+    /**
+     * https://stepic.org/lesson/Объявление-класса-12766/step/12?course=Java-Базовый-курс&unit=3114
+     * @param robot
+     * @param toX
+     * @param toY
+     */
     public static void moveRobot(Robot robot, int toX, int toY) {
         while (robot.getDirection() == Direction.DOWN || robot.getDirection() == Direction.UP) {
             robot.turnLeft();
