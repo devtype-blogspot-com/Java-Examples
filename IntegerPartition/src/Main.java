@@ -1,19 +1,36 @@
 import java.util.Scanner;
+import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
-    public static long foo(long n, long m) {
-        long result = 0;
-        if (n <= 1) return 1;
-        if (m > n) return foo(n, n);
-        for (long k = 1; k <= m; k++) result = result + foo(n - k, k);
-        return result;
+    static final private Map<String, BigInteger> cache = new HashMap<>();
+
+    public static BigInteger p(final long n, final long m) {
+        if (n <= 1) return BigInteger.ONE;
+        if (m > n) return p(n, n);
+
+        String cacheKey = n + "," + m;
+        BigInteger sum = cache.get(cacheKey);
+        if (sum != null) return sum;
+
+        sum = BigInteger.ZERO;
+        for (long k = 1; k <= m; k++) sum = sum.add(p(n-k, k));
+
+        cache.put(cacheKey, sum);
+        return sum;
+    }
+
+    public static BigInteger p(final long n) {
+        return p(n, n);
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         long n = scanner.nextLong();
-        System.out.println(foo(n, n));
+        BigInteger result = p(n, n);
+        System.out.println(result.mod(new BigInteger("1000000007")));
     }
 }
 
