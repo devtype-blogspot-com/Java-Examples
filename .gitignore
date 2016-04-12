@@ -1,8 +1,5 @@
 .DS_Store
 ._*
-**/xcuserdata
-**/*.xcworkspace
-
 
 *.class
 
